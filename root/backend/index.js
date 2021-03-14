@@ -3,8 +3,11 @@ let cors  = require('cors');
 let mongoose = require('mongoose');
 let database = require('./database');
 let bodyParser = require('body-parser');
+require('dotenv').config;
+
 
 mongoose.Promise = global.Promise;
+
 mongoose.connect(database.db, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -17,7 +20,10 @@ mongoose.connect(database.db, {
 )
 
 const cryptoEndPoint = require('./routes/crypto.route');
+
+
 const app = express();
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
@@ -32,7 +38,8 @@ const server = app.listen(port, () => {
 })
 
 app.use((req,res,next) => {
-    next(createError(404));
+    res.send('status: 404')
+    next();
 })
 
 app.use(function (err, req, res, next) {

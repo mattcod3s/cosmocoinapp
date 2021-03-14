@@ -7,7 +7,7 @@ let cryptoSchema = new Schema({
         type: String
     }
 }, {
-    collection: 'cryptos'
+    collection: 'cryptos' 
 })
 
 module.exports = mongoose.model('Crypto', cryptoSchema);
