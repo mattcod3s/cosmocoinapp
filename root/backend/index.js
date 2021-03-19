@@ -3,11 +3,11 @@ let cors  = require('cors');
 let mongoose = require('mongoose');
 let database = require('./database');
 let bodyParser = require('body-parser');
+const rp = require('request-promise');
+
 require('dotenv').config;
 
-
 mongoose.Promise = global.Promise;
-
 mongoose.connect(database.db, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -20,8 +20,6 @@ mongoose.connect(database.db, {
 )
 
 const cryptoEndPoint = require('./routes/crypto.route');
-
-
 const app = express();
 
 app.use(bodyParser.json());
@@ -37,13 +35,24 @@ const server = app.listen(port, () => {
     console.log('Connected to port: ' + port);
 })
 
-app.use((req,res,next) => {
-    res.send('status: 404')
-    next();
-})
 
-app.use(function (err, req, res, next) {
-    console.error(err.message);
-    if(!err.statusCode) err.statusCode = 500;
-    res.status(err.statusCode).send(err.message);
-})
+const requestOptions = {
+  method: 'GET',
+  uri: 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',
+  qs: {
+    'start': '1',
+    'limit': '10',
+    'convert': 'USD'
+  },
+  headers: {
+    'X-CMC_PRO_API_KEY': `${process.env.CMC_API_KEY}`
+  },
+  json: true,
+  gzip: true
+};
+
+rp(requestOptions).then(response => {
+  console.log('API call response:', response.data[1].name);
+}).catch((err) => {
+  console.log('API call error:', err.message);
+});
