@@ -10,12 +10,45 @@
     justify-content: center;
     align-items: flex-end;
 
+    .logo {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        width: 17vw;
+        height: 7vh;
+        background-image: url(../../../cosmoLogo.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+
     .login__container {
         width: 70vw;
         height: 70vh;
         border-radius: 12px;
-        backdrop-filter: blur(14px) brightness(60%);
+        backdrop-filter: blur(10px) brightness(60%);
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
         margin-bottom: 8vh;
+        display: flex;
+        transition-duration: 0.3s;
+
+        .login__card {
+            position: absolute;
+            width: 24vw;
+            height: 70vh;
+            background: rgba(27, 27, 27, 0.9);
+            border-radius: 12px;
+            transition-duration: 0.5s;
+            z-index: 5;
+        }
+        
+
+        .login__form {
+            position: absolute;
+            z-index: 4;
+            width: 46vw;
+            height: 70vh;
+            border-radius: 12px;
+            transition-duration: 0.5s;
+        }
     }
 }
