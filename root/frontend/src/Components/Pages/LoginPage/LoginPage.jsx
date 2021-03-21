@@ -8,6 +8,7 @@ import {SignupStatusContext} from '../../../context/context';
 
 const LoginPage = () => {
     const [isSignup, setIsSignup] = useContext(SignupStatusContext);
+    const [fadeAnim, setFadeAnim] = useState(false);
     return (
         <div className="login__page">
             <div className="logo"></div>

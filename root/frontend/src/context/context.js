@@ -12,3 +12,17 @@ export const SignupStatusProvider = (props) => {
         </SignupStatusContext.Provider>
     );
 }
+
+
+export const FadeAnimContext = createContext();
+
+export const FadeAnimProvider = (props) => {
+
+    const [fadeAnim, setFadeAnim] = useState(false);
+
+    return (
+        <FadeAnimContext.Provider value={ [fadeAnim, setFadeAnim] }>
+            {props.children}
+        </FadeAnimContext.Provider>
+    );
+}

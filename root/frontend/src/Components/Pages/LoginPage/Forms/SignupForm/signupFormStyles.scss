@@ -1,0 +1,93 @@
+.form__container {
+    width: 46vw;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .wrapper {
+        width: 40vw;
+        height: 62vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        .form__title {
+            width: 40vw;
+            height: 8vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            
+            h2 {
+                font-family: 'Poppins';
+                font-weight: 200;
+                font-size: 2.4rem;
+                color: white;
+            }
+        }
+    
+        .su_form {
+            width: 40vw;
+            height: 34vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            form {
+                width: 40vw;
+                height: 34vh;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-direction: column;
+
+                .form__row__top {
+                    width: 40vw;
+                    height: 11vh;
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+
+                    input {
+                        width: 15vw;
+                        padding: 16px;
+                        color: white;
+                        border-radius: 150px;
+                        outline: none;
+                        background: transparent;
+                        border: 1px solid white;
+                    }
+                }
+
+                .form__row {
+                    width: 40vw;
+                    height: 11vh;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    input {
+                        width: 35vw;
+                        padding: 16px;
+                        border-radius: 150px;
+                        outline: none;
+                        background: transparent;
+                        border: 1px solid white;
+                        color: white;
+                    }
+                }
+            }
+        }
+    
+        .su__buttonArea {
+            width: 40vw;
+            height: 20vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+    }
+}

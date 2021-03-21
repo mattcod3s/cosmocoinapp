@@ -1,0 +1,67 @@
+.form__container {
+    width: 46vw;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .wrapper {
+        width: 40vw;
+        height: 62vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        .form__title {
+            width: 40vw;
+            height: 8vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            
+            h2 {
+                font-family: 'Poppins';
+                font-weight: 200;
+                font-size: 2.4rem;
+                color: white;
+            }
+        }
+
+        .si_form {
+            margin-top: 3vh;
+            width: 40vw;
+            height: 28vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            form {
+                width: 40vw;
+                height: 28vh;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                flex-direction: column;
+
+                input {
+                    width: 24vw;
+                    padding: 16px;
+                    border-radius: 150px;
+                    outline: none;
+                    background: transparent;
+                    border: 1px solid white;
+                    color: white;
+                }
+            }
+        }
+
+        .si__buttonArea {
+            width: 40vw;
+            height: 23vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}

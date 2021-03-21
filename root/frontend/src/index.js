@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import {SignupStatusProvider} from './context/context';
+import {SignupStatusProvider, FadeAnimProvider} from './context/context';
 
 ReactDOM.render(
     <SignupStatusProvider>
-        <App />
+        <FadeAnimProvider>
+            <App />
+        </FadeAnimProvider>
     </SignupStatusProvider>    
 , document.getElementById('root'));
