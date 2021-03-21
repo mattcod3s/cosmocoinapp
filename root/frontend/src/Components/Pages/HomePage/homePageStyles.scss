@@ -52,25 +52,33 @@
             .home__btn {
                 width: 10vw;
                 height: 4vw;
-                border-radius: 50px;
+                border-radius: 150px;
                 background: rgba(119, 0, 255, 0.699);
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                font-family: 'Poppins';
-                color: white;
                 cursor: pointer;
                 transition-duration: 0.2s;
+                transform: translateY(0px);
+
+                h3 {
+                    font-family: 'Poppins';
+                    color: white;
+                    font-weight: 200;
+                }
             }
             .home__btn:hover, .home__btn:active {
                 background: rgba(212, 210, 214, 0.973);
-                color: rgb(119, 0, 255);
+                transform: translateY(-5px);
+                h3 {
+                    color: rgb(119, 0, 255);
+                }
             }
         }
     }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 1025px) {
     .logo {
         left: 10vw;
         top: 12vh !important;
@@ -78,3 +86,29 @@
         height: 65px !important;
     }
 }
+
+
+@media screen and (max-width: 600px) {
+    .home__card {
+        height: 75vh !important;
+
+        .home__blurb{
+            height: 40vh !important;
+            h3 {
+                font-size: 1.4rem !important;
+                line-height: 30px !important;
+            }
+        }
+
+        .home__btns {
+            width: 80vw !important;
+            height: 20vh !important;
+
+            .home__btn {
+                width: 34vw !important;
+                height: 14vw !important;
+            }
+        }
+    }
+}
+
