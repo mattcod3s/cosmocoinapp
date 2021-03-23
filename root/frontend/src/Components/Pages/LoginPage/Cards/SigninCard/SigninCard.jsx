@@ -13,7 +13,7 @@ const SigninCard = () => {
     }
     return (
         <div className="signin__card">
-            <div className="si__card__details">
+            <div className={`si__card__details ${fadeAnim && "fade"}`}>
                 <div className="si__title">
                     <h3>Welcome Back!</h3>
                 </div>

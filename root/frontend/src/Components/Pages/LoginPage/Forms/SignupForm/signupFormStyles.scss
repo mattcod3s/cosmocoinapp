@@ -1,9 +1,29 @@
+@keyframes fadeAnim {
+    0% {
+        opacity: 0;
+    }
+    50%{
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
 .form__container {
     width: 46vw;
     height: 70vh;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    .fade {
+        animation-name: fadeAnim;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-iteration-count: initial;
+    }
 
     .wrapper {
         width: 40vw;

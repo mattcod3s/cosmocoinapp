@@ -1,9 +1,28 @@
+@keyframes fadeAnim {
+    0% {
+        opacity: 0;
+    }
+    50%{
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 .form__container {
     width: 46vw;
     height: 70vh;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    .fade {
+        animation-name: fadeAnim;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-iteration-count: initial;
+    }
 
     .wrapper {
         width: 40vw;
@@ -59,9 +78,65 @@
         .si__buttonArea {
             width: 40vw;
             height: 23vh;
+            padding-top: 6vh;
             display: flex;
-            justify-content: center;
+            justify-content: space-around;
             align-items: center;
+            flex-direction: column;
+
+            .si_btn{
+                transition-duration: 0.2s;
+            }
+
+            .si_btn:hover {
+                background: rgb(0, 0, 0);
+                h3{
+                    color: white;
+                }
+            }
+
+            .sign_in__button {
+                width: 12vw;
+                height: 4vh;
+                padding: 8px;
+                background: white;
+                border-radius: 150px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+
+                h3 {
+                    font-family: 'Poppins';
+                    font-weight: 200;
+                    color: #333;
+                    font-size: 0.8rem;
+                }
+            }
+
+            .sign_in__google__button {
+                width: 12vw;
+                height: 4vh;
+                padding: 8px;
+                background: white;
+                border-radius: 150px;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                cursor: pointer;
+
+                h3 {
+                    font-family: 'Poppins';
+                    font-weight: 200;
+                    color: #333;
+                    font-size: 0.8rem;
+                }
+
+                img {
+                    width: 3vh;
+                    height: 3vh;
+                }
+            }
         }
     }
 }

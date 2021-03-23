@@ -12,7 +12,7 @@ const SignupCard = () => {
     }
     return (
         <div className="signup__card">
-            <div className="su__card__details">
+            <div className={`su__card__details ${fadeAnim && "fade"}`} >
                 <div className="su__title">
                     <h3>Greetings!</h3>
                 </div>

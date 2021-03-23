@@ -1,4 +1,14 @@
-
+@keyframes fadeAnim {
+    0% {
+        opacity: 0;
+    }
+    50%{
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 
 .signin__card {
     width: 24vw;
@@ -7,6 +17,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    .fade {
+        animation-name: fadeAnim;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-iteration-count: initial;
+    }
 
     .si__card__details {
         width: 20vw;
