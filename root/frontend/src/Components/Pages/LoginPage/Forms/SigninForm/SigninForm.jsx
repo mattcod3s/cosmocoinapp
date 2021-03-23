@@ -1,13 +1,23 @@
 import React, {useContext, useEffect, useState, useReducer, useDispatch} from 'react';
 import './signinFormStyles.scss';
 import {FadeAnimContext,UserContext} from '../../../../../context/context';
+import {useHistory} from 'react-router-dom';
 import google from '../../../../../Assets/google.svg';
 import {GoogleLogin } from 'react-google-login';
 import dotenv from  'dotenv'
 
 const SigninForm = () => {
+    const history = useHistory();
     const {authorise, logout} = useContext(UserContext);
     const [fadeAnim, setFadeAnim] = useContext(FadeAnimContext);
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+
+    useEffect(() => {
+        const token = user?.token;
+
+        setUser(JSON.parse(localStorage.getItem('profile')));
+    }, [])
+
     const handleSubmit = () => {
 
     }
@@ -20,7 +30,12 @@ const SigninForm = () => {
         console.log(res);
         const result = res?.profileObj;
         const token = res?.tokenId;
-        authorise(result, token);
+        try {
+            authorise(result, token);
+            history.push('/');
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     const googleFailure = (error) => {
