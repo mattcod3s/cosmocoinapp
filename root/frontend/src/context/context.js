@@ -59,3 +59,17 @@ export const UserProvider = (props) => {
         </UserContext.Provider>
     )
 }
+
+export const CurrentUserContext = createContext(contextReducer);
+
+
+export const CurrentUserProvider = (props) => {
+
+    const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem('profile')));
+
+    return (
+        <CurrentUserContext.Provider value={ [currentUser, setCurrentUser] }>
+            {props.children}
+        </CurrentUserContext.Provider>
+    )
+}

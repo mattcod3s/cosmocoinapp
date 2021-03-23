@@ -1,9 +1,42 @@
-import React from 'react';
+import React, {useContext, useState, useEffect} from 'react';
+import {useHistory, useLocation} from 'react-router-dom';
+import {UserContext, CurrentUserContext} from '../../../context/context';
 import './headerMainStyles.scss';
-const HeaderMain = () => {
+import userIcon from '../../../Assets/userIcon.svg';
+
+const HeaderMain = ({name}) => {
+    const history = useHistory();
+    const location = useLocation();
+    const {authorise, logout,} = useContext(UserContext);
+    const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
+
+    const logoutHandler = () => {
+        logout();
+        history.push('/');
+        setCurrentUser(null);
+        
+    }
+
     return (
-        <div>
-            headermain
+        <div className="dashboard__header">
+            <div className="logo__area">
+                <div className="logo"></div>
+            </div>
+            <div className="profile__area">
+                <div className="profile__details">
+                    <div className="profile__img">
+                        <img src={userIcon}/>
+                    </div>
+                    <div className="profile__name">
+                        <h3>{name}</h3>
+                    </div>
+                </div>
+                <div className="logout__buttonArea">
+                    <div className="logout__btn" onClick={()=>logoutHandler()}>
+                        <h4>Log Out</h4>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

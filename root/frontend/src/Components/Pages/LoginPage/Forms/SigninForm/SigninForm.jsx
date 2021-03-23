@@ -1,22 +1,23 @@
 import React, {useContext, useEffect, useState, useReducer, useDispatch} from 'react';
 import './signinFormStyles.scss';
-import {FadeAnimContext,UserContext} from '../../../../../context/context';
-import {useHistory} from 'react-router-dom';
+import {FadeAnimContext,UserContext, CurrentUserContext} from '../../../../../context/context';
+import {useHistory, useLocation} from 'react-router-dom';
 import google from '../../../../../Assets/google.svg';
 import {GoogleLogin } from 'react-google-login';
 import dotenv from  'dotenv'
 
 const SigninForm = () => {
     const history = useHistory();
+    const location = useLocation();
     const {authorise, logout} = useContext(UserContext);
     const [fadeAnim, setFadeAnim] = useContext(FadeAnimContext);
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+    const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
 
     useEffect(() => {
-        const token = user?.token;
-
-        setUser(JSON.parse(localStorage.getItem('profile')));
-    }, [])
+        const token = currentUser?.token;
+        setCurrentUser(JSON.parse(localStorage.getItem('profile')));
+        console.log(currentUser)
+    }, [location])
 
     const handleSubmit = () => {
 
@@ -32,7 +33,7 @@ const SigninForm = () => {
         const token = res?.tokenId;
         try {
             authorise(result, token);
-            history.push('/');
+            history.push('/dashboard');
         } catch (error) {
             console.log(error);
         }
