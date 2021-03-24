@@ -5,6 +5,7 @@ import {useHistory, useLocation} from 'react-router-dom';
 import google from '../../../../../Assets/google.svg';
 import {GoogleLogin } from 'react-google-login';
 import dotenv from  'dotenv'
+import { signin } from '../../../../../actions/auth';
 
 const SigninForm = () => {
     const history = useHistory();
@@ -26,6 +27,7 @@ const SigninForm = () => {
 
     const handleChange = (e) => {
         setLoginFormData({ ...loginFormData, [e.target.name] : e.target.value});
+        signin(loginFormData, history);
     }
 
     const googleSuccess = async (res) => {

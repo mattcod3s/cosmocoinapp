@@ -20,6 +20,8 @@ mongoose.connect(database.db, {
 )
 
 const cryptoEndPoint = require('./routes/crypto.route');
+
+const userEndPoint = require('./routes/user.route');
 const app = express();
 
 app.use(bodyParser.json());
@@ -27,8 +29,8 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(cors());
-
 app.use('/api', cryptoEndPoint);
+app.use('/api', userEndPoint);
 
 const port = process.env.PORT || 4000;
 const server = app.listen(port, () => {
