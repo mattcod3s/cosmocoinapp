@@ -107,7 +107,33 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            
+
+            .su__btn {
+                width: 12vw;
+                height: 6vh;
+                padding: 8px;
+                background: white;
+                border-radius: 150px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                margin-top: 4vh;
+                transition-duration: 0.25s;
+
+                h3 {
+                    font-family: 'Poppins';
+                    font-weight: 200;
+                    color: #333;
+                    font-size: 0.9rem;
+                }
+            }
+            .su__btn:hover {
+                background:  rgba(119, 0, 255, 0.699);
+                h3 {
+                    color: white;
+                }
+            }
         }
     }
 }

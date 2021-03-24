@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState, useReducer, useDispatch} from 'react';
 import './signinFormStyles.scss';
-import {FadeAnimContext,UserContext, CurrentUserContext} from '../../../../../context/context';
+import {FadeAnimContext,UserContext, CurrentUserContext, LoginFormDataContext} from '../../../../../context/context';
 import {useHistory, useLocation} from 'react-router-dom';
 import google from '../../../../../Assets/google.svg';
 import {GoogleLogin } from 'react-google-login';
@@ -12,6 +12,7 @@ const SigninForm = () => {
     const {authorise, logout} = useContext(UserContext);
     const [fadeAnim, setFadeAnim] = useContext(FadeAnimContext);
     const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
+    const [loginFormData, setLoginFormData] = useContext(LoginFormDataContext);
 
     useEffect(() => {
         const token = currentUser?.token;
@@ -20,11 +21,11 @@ const SigninForm = () => {
     }, [location, currentUser])
 
     const handleSubmit = () => {
-
+        console.log(loginFormData);
     }
 
-    const handleChange = () => {
-
+    const handleChange = (e) => {
+        setLoginFormData({ ...loginFormData, [e.target.name] : e.target.value});
     }
 
     const googleSuccess = async (res) => {
@@ -51,18 +52,18 @@ const SigninForm = () => {
                 </div>
                 <div className="si_form">
                     <form onSubmit={()=>handleSubmit()}>
-                        <input type="text" placeholder="Username / Email" onChange={()=>handleChange()}/>
-                        <input type="password" placeholder="Password" onChange={()=>handleChange()}/>
+                        <input type="text" name="emailAddress" placeholder="Email Address" onChange={(e)=>handleChange(e)}/>
+                        <input type="password" name="password" placeholder="Password" onChange={(e)=>handleChange(e)}/>
                     </form>
                 </div>
                 <div className="si__buttonArea">
-                    <div className="sign_in__button si_btn"><h3>Sign In</h3></div>
+                    <div className="sign_in__button si_btn" onClick={()=>handleSubmit()}><h3>Sign In</h3></div>
                     {/*<div className="sign_in__google__button si_btn"><h3>Sign In with Google</h3><img src={google}/></div>*/}
                     <GoogleLogin 
                         clientId={`${process.env.REACT_APP_CLIENT_ID}`}
                         render={(renderProps) => (
                             <div 
-                                className="sign_in__google__button" 
+                                className="sign_in__google__button si_btn" 
                                 onClick={renderProps.onClick} 
                                 disabled={renderProps.disabled}
                                 >

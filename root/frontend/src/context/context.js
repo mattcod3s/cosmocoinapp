@@ -1,12 +1,10 @@
 import React, { useState, createContext, useReducer } from 'react';
 import contextReducer from './contextReducer';
 
-const initialUsers = [
-    {
-        username: 'JohnDoe1992',
-        password: '1234567max!',
-    }
-]
+const initialLoginFormData = {emailAddress: '', password: ''};
+const initialRegistrationFormData = {firstName: '', lastName: '', emailAddress: '', password: ''};
+
+
 
 export const SignupStatusContext = createContext();
 
@@ -40,7 +38,7 @@ export const UserContext = createContext(contextReducer);
 
 
 export const UserProvider = (props) => {
-    const [user, dispatch] = useReducer(contextReducer, initialUsers);
+    const [user, dispatch] = useReducer(contextReducer);
 
     const authorise = (result, token) => {
         dispatch({ type : 'AUTH', payload : result, token});
@@ -60,7 +58,7 @@ export const UserProvider = (props) => {
     )
 }
 
-export const CurrentUserContext = createContext(contextReducer);
+export const CurrentUserContext = createContext();
 
 
 export const CurrentUserProvider = (props) => {
@@ -71,5 +69,34 @@ export const CurrentUserProvider = (props) => {
         <CurrentUserContext.Provider value={ [currentUser, setCurrentUser] }>
             {props.children}
         </CurrentUserContext.Provider>
+    )
+}
+
+
+export const LoginFormDataContext = createContext();
+
+
+export const LoginFormDataProvider = (props) => {
+
+    const [loginFormData, setLoginFormData] = useState(initialLoginFormData);
+
+    return (
+        <LoginFormDataContext.Provider value={ [loginFormData, setLoginFormData] }>
+            {props.children}
+        </LoginFormDataContext.Provider>
+    )
+}
+
+export const RegistrationFormDataContext = createContext();
+
+
+export const RegistrationFormDataProvider = (props) => {
+
+    const [registrationFormData, setRegistrationFormData] = useState(initialRegistrationFormData);
+
+    return (
+        <RegistrationFormDataContext.Provider value={ [registrationFormData, setRegistrationFormData] }>
+            {props.children}
+        </RegistrationFormDataContext.Provider>
     )
 }
