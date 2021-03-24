@@ -4,7 +4,7 @@ import {UserContext, CurrentUserContext} from '../../../context/context';
 import './headerMainStyles.scss';
 import userIcon from '../../../Assets/userIcon.svg';
 
-const HeaderMain = ({name}) => {
+const HeaderMain = () => {
     const history = useHistory();
     const location = useLocation();
     const {authorise, logout,} = useContext(UserContext);
@@ -28,7 +28,7 @@ const HeaderMain = ({name}) => {
                         <img src={userIcon}/>
                     </div>
                     <div className="profile__name">
-                        <h3>{name}</h3>
+                        <h3>{JSON.parse(localStorage.getItem('profile')).name}</h3>
                     </div>
                 </div>
                 <div className="logout__buttonArea">

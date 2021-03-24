@@ -17,7 +17,7 @@ const SigninForm = () => {
         const token = currentUser?.token;
         setCurrentUser(JSON.parse(localStorage.getItem('profile')));
         console.log(currentUser)
-    }, [location])
+    }, [location, currentUser])
 
     const handleSubmit = () => {
 
