@@ -4,7 +4,7 @@ import './cryptoInfoStyles.scss';
 const CryptoInfo = () => {
     return (
         <div>
-            info
+           
         </div>
     )
 }

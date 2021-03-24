@@ -20,8 +20,8 @@ mongoose.connect(database.db, {
 )
 
 const cryptoEndPoint = require('./routes/crypto.route');
-
 const userEndPoint = require('./routes/user.route');
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -40,7 +40,7 @@ const server = app.listen(port, () => {
 
 const requestOptions = {
   method: 'GET',
-  uri: 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',
+  uri: 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest/symbol=BTC',
   qs: {
     'start': '1',
     'limit': '10',
@@ -54,7 +54,7 @@ const requestOptions = {
 };
 
 rp(requestOptions).then(response => {
-  console.log('API call response:', response.data[1].name);
+  console.log('API call response:', response.data.name);
 }).catch((err) => {
   console.log('API call error:', err.message);
 });

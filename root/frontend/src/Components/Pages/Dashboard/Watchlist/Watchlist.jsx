@@ -1,10 +1,34 @@
 import React from 'react';
 import './watchlistStyles.scss';
+import addButton from '../../../../Assets/button.svg';
+import Crypto from './Crypto/Crypto';
+import axios from 'axios';
 
 const Watchlist = () => {
+
+
+
+
     return (
-        <div>
-            watxch
+        <div className="watchlist__container">
+            <div className="watchlist__header">
+                <div className="header__title">
+                    <h3>Your Watchlist</h3>
+                </div>
+                <div className="header__add">
+                    <div className="add__area">
+                        <div className="add_icon">
+                            <img src={addButton}/>
+                        </div>
+                        <div className="add_text">
+                            <h4>Add CryptoCurrency</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="watchlist__main">
+                <Crypto />
+            </div>
         </div>
     )
 }
