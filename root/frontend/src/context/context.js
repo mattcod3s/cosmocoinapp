@@ -1,5 +1,5 @@
 import React, { useState, createContext, useReducer } from 'react';
-import contextReducer from './contextReducer';
+import {contextReducer} from './contextReducer';
 
 const initialLoginFormData = {emailAddress: '', password: ''};
 const initialRegistrationFormData = {firstName: '', lastName: '', emailAddress: '', password: ''};
@@ -100,3 +100,6 @@ export const RegistrationFormDataProvider = (props) => {
         </RegistrationFormDataContext.Provider>
     )
 }
+
+
+

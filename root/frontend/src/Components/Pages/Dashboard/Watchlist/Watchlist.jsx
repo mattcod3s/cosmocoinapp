@@ -2,13 +2,13 @@ import React, {useEffect} from 'react';
 import './watchlistStyles.scss';
 import addButton from '../../../../Assets/button.svg';
 import Crypto from './Crypto/Crypto';
-import {fetchCryptos} from '../../../../api/index';
+import {useSelector} from 'react-redux';
 
 const Watchlist = () => {
-
+    const cryptos = useSelector((state) => state.cryptoReducer);
 
     useEffect(() => {
-        console.log(fetchCryptos)
+        console.log(cryptos);
     }, [])
 
     return (

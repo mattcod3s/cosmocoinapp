@@ -2,19 +2,27 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import {SignupStatusProvider, FadeAnimProvider, UserProvider, CurrentUserProvider, RegistrationFormDataProvider, LoginFormDataProvider} from './context/context';
+import {createStore, applyMiddleware, compose} from 'redux';
+import reducers from './reducers';
+import thunk from 'redux-thunk';
+import {Provider} from 'react-redux';
+
+const store = createStore(reducers, compose(applyMiddleware(thunk)));
 
 ReactDOM.render(
-    <CurrentUserProvider>
-        <UserProvider>
-            <RegistrationFormDataProvider>
-                <LoginFormDataProvider>
-                    <SignupStatusProvider>
-                        <FadeAnimProvider>
-                            <App />
-                        </FadeAnimProvider>
-                    </SignupStatusProvider>
-                </LoginFormDataProvider>
-            </RegistrationFormDataProvider>
-        </UserProvider>    
-    </CurrentUserProvider>
+    <Provider store={store}>
+        <CurrentUserProvider>
+            <UserProvider>
+                <RegistrationFormDataProvider>
+                    <LoginFormDataProvider>
+                        <SignupStatusProvider>
+                            <FadeAnimProvider>
+                                <App />
+                            </FadeAnimProvider>
+                        </SignupStatusProvider>
+                    </LoginFormDataProvider>
+                </RegistrationFormDataProvider>
+            </UserProvider>    
+        </CurrentUserProvider>
+    </Provider>
 , document.getElementById('root'));

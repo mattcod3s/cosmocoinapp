@@ -1,4 +1,4 @@
-const contextReducer = (state = {authData : null}, action) => {
+export const contextReducer = (state = {authData : null}, action) => {
 
     switch (action.type) {
         case 'AUTH' : 
@@ -15,4 +15,5 @@ const contextReducer = (state = {authData : null}, action) => {
 
 } 
 
-export default contextReducer;
+
+

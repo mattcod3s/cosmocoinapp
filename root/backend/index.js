@@ -5,6 +5,7 @@ let database = require('./database');
 let bodyParser = require('body-parser');
 const rp = require('request-promise');
 
+
 require('dotenv').config;
 
 mongoose.Promise = global.Promise;
@@ -18,9 +19,8 @@ mongoose.connect(database.db, {
      console.log('Database Couldnt be connected to: ' + error);
  }
 )
-
-const cryptoEndPoint = require('./routes/crypto.route');
-const userEndPoint = require('./routes/user.route');
+const userEndPoint = require('./routes/user.route.js');
+const cryptoEndPoint = require('./routes/crypto.route.js');
 
 const app = express();
 
@@ -28,8 +28,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
+
 app.use(cors());
-app.use('/', cryptoEndPoint);
+app.use('/dashboard', cryptoEndPoint);
 app.use('/', userEndPoint);
 
 const port = process.env.PORT || 4000;

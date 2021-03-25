@@ -1,4 +1,4 @@
-import * as api from '../api/index.js';
+import * as api from '../api';
 
 export const signin = (loginFormData, history) => async (dispatch) => {
     try {
