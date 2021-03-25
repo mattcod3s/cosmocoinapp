@@ -1,13 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './watchlistStyles.scss';
 import addButton from '../../../../Assets/button.svg';
 import Crypto from './Crypto/Crypto';
-import axios from 'axios';
+import {fetchCryptos} from '../../../../api/index';
 
 const Watchlist = () => {
 
 
-
+    useEffect(() => {
+        console.log(fetchCryptos)
+    }, [])
 
     return (
         <div className="watchlist__container">

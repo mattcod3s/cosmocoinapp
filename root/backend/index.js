@@ -29,8 +29,8 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(cors());
-app.use('/api', cryptoEndPoint);
-app.use('/api', userEndPoint);
+app.use('/', cryptoEndPoint);
+app.use('/', userEndPoint);
 
 const port = process.env.PORT || 4000;
 const server = app.listen(port, () => {
@@ -38,23 +38,3 @@ const server = app.listen(port, () => {
 })
 
 
-const requestOptions = {
-  method: 'GET',
-  uri: 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest/symbol=BTC',
-  qs: {
-    'start': '1',
-    'limit': '10',
-    'convert': 'USD'
-  },
-  headers: {
-    'X-CMC_PRO_API_KEY': `${process.env.CMC_API_KEY}`
-  },
-  json: true,
-  gzip: true
-};
-
-rp(requestOptions).then(response => {
-  console.log('API call response:', response.data.name);
-}).catch((err) => {
-  console.log('API call error:', err.message);
-});
