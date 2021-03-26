@@ -103,3 +103,17 @@ export const RegistrationFormDataProvider = (props) => {
 
 
 
+export const CryptoAddDataContext = createContext();
+
+export const CryptoAddDataProvider = (props) => {
+
+    const [cryptoAddData, setCryptoAddData] = useState({
+        id: '', name: '', symbol: '', value: '',
+    });
+
+    return (
+        <CryptoAddDataContext.Provider value={ [cryptoAddData, setCryptoAddData] }>
+            {props.children}
+        </CryptoAddDataContext.Provider>
+    )
+}

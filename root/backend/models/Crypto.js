@@ -9,7 +9,7 @@ let cryptoSchema = new Schema({
     name: {
         type: String, required: true
     },
-    price: {
+    value: {
         type: String, requuired: true
     }, 
     id: {

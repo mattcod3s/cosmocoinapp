@@ -9,7 +9,7 @@ const { getCryptos, addCryptos, deleteCryptos } = require('../controllers/crypto
 cryptoRoute.get('/', getCryptos);
 
 //post new cryptocurrency to database when user adds it
-cryptoRoute.post('/add:id', addCryptos);
+cryptoRoute.post('/', addCryptos);
 
 //delete crypto off database, therefore off watchlist
 cryptoRoute.delete('/delete:id', deleteCryptos);

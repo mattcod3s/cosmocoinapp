@@ -4,7 +4,7 @@
         case 'FETCH_ALL' : 
             return action.payload;
         case 'CREATE' : 
-            return cryptos;
+            return [...cryptos, action.payload];
         default : 
             return cryptos;
 

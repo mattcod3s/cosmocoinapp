@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState,} from 'react';
 import './watchlistStyles.scss';
 import addButton from '../../../../Assets/button.svg';
-import Crypto from './Dropdown/Crypto/Crypto';
+import Crypto from './Crypto/Crypto';
 import Dropdown from './Dropdown/Dropdown';
 import {useSelector, useDispatch} from 'react-redux';
 import arrowOut from '../../../../Assets/arrowOut.svg';
@@ -13,10 +13,11 @@ const Watchlist = () => {
     const dropdown = useSelector((state) => state.dropdownReducer);
     const [isAddCrypto, setIsAddCrypto] = useState(false);
 
+    
+
     useEffect(() => {
         dispatch(fetchDropdown());
         console.log(cryptos);
-        console.log(dropdown);
     }, [dispatch, isAddCrypto])
 
     return (
@@ -42,7 +43,7 @@ const Watchlist = () => {
                     </div>
                 </div>
                 <div className="watchlist__main">
-                    <Crypto />
+                    
                 </div>
             </div>
         </>
