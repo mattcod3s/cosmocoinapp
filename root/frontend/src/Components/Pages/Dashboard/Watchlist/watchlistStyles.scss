@@ -1,3 +1,31 @@
+.dropdown__cont {
+    position: absolute;
+    width: 24vw;
+    height: 50vh;
+    border-radius: 12px;
+    background: whitesmoke;
+    z-index: 5;
+    left: 61vw;
+    top: 21vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    img {
+        position: absolute;
+        left: 10px;
+        top: 15px;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+    }
+}
+
+.dropdown__closed {
+    display: none;
+}
+
 .watchlist__container {
     width: 70vw;
     height: 70vh;
@@ -9,6 +37,7 @@
     flex-direction: column;
     transition-duration: 0.3s;
     margin-top: 20vh;
+    z-index: 3;
 
     .watchlist__header {
         width: 70vw;
@@ -39,6 +68,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            
             .add__area {
                 width: 14vw;
                 height: 6vh;

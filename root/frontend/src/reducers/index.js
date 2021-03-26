@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
 import cryptoReducer from './cryptoReducer';
-export default combineReducers({
-    cryptoReducer
-})
+import dropdownReducer from './dropdownReducer';
+export default combineReducers({ cryptoReducer, dropdownReducer})

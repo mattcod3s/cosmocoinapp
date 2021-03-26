@@ -19,4 +19,4 @@ let cryptoSchema = new Schema({
     collection: 'cryptos' 
 })
 
-module.exports = mongoose.model('Crypto', cryptoSchema);
+module.exports = mongoose.model('Crypto', cryptoSchema); 

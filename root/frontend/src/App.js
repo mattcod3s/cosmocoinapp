@@ -1,11 +1,8 @@
 import React from 'react';
-import HeaderHome from './Components/Headers/HeaderHome/HeaderHome';
-import HeaderMain from './Components/Headers/HeaderMain/HeaderMain';
-import Footer from './Components/Footer/Footer';
 import HomePage from './Components/Pages/HomePage/HomePage';
 import Dashboard from './Components/Pages/Dashboard/Dashboard';
 import LoginPage from './Components/Pages/LoginPage/LoginPage';
-import {Route,  Switch, useLocation, Link, BrowserRouter as Router} from 'react-router-dom';
+import {Route,  Switch, /*useLocation, Link,*/ BrowserRouter as Router} from 'react-router-dom';
 
 import './AppStyles.scss';
 import './reset.css';

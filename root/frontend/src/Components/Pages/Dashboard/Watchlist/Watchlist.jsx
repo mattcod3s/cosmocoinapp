@@ -1,37 +1,50 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import './watchlistStyles.scss';
 import addButton from '../../../../Assets/button.svg';
-import Crypto from './Crypto/Crypto';
-import {useSelector} from 'react-redux';
+import Crypto from './Dropdown/Crypto/Crypto';
+import Dropdown from './Dropdown/Dropdown';
+import {useSelector, useDispatch} from 'react-redux';
+import arrowOut from '../../../../Assets/arrowOut.svg';
+import {fetchDropdown} from '../../../../actions/dropdown';
 
 const Watchlist = () => {
+    const dispatch = useDispatch();
     const cryptos = useSelector((state) => state.cryptoReducer);
+    const dropdown = useSelector((state) => state.cryptoReducer);
+    const [isAddCrypto, setIsAddCrypto] = useState(false);
 
     useEffect(() => {
+        dispatch(fetchDropdown());
         console.log(cryptos);
-    }, [])
+    }, [dispatch])
 
     return (
-        <div className="watchlist__container">
-            <div className="watchlist__header">
-                <div className="header__title">
-                    <h3>Your Watchlist</h3>
-                </div>
-                <div className="header__add">
-                    <div className="add__area">
-                        <div className="add_icon">
-                            <img src={addButton}/>
-                        </div>
-                        <div className="add_text">
-                            <h4>Add CryptoCurrency</h4>
+        <>
+            <div className={isAddCrypto ? "dropdown__cont" : "dropdown__closed"}>
+                <img src={arrowOut} onClick={()=>setIsAddCrypto(false)}/>
+                <Dropdown />
+            </div>
+            <div className="watchlist__container">
+                <div className="watchlist__header">
+                    <div className="header__title">
+                        <h3>Your Watchlist</h3>
+                    </div>
+                    <div className="header__add">
+                        <div className="add__area" onClick={()=>setIsAddCrypto(true)}>
+                            <div className="add_icon">
+                                <img src={addButton}/>
+                            </div>
+                            <div className="add_text">
+                                <h4>Add CryptoCurrency</h4>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div className="watchlist__main">
+                    <Crypto />
+                </div>
             </div>
-            <div className="watchlist__main">
-                <Crypto />
-            </div>
-        </div>
+        </>
     )
 }
 
