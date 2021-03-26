@@ -1,0 +1,36 @@
+.crypto__wrapper {
+    width: 22vw;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    .crypto__symbol {
+        width: 7vw;
+        height: 10vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        h2 {
+            font-family: 'Poppins';
+            font-weight: 100;
+            font-size: 1.4rem;
+        }
+    }
+
+    .crypto__name {
+        width: 15vw;
+        height: 10vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        h2 {
+            font-family: 'Poppins';
+            font-weight: 300;
+            font-size: 0.9rem;
+        }
+    }
+}

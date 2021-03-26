@@ -10,19 +10,20 @@ import {fetchDropdown} from '../../../../actions/dropdown';
 const Watchlist = () => {
     const dispatch = useDispatch();
     const cryptos = useSelector((state) => state.cryptoReducer);
-    const dropdown = useSelector((state) => state.cryptoReducer);
+    const dropdown = useSelector((state) => state.dropdownReducer);
     const [isAddCrypto, setIsAddCrypto] = useState(false);
 
     useEffect(() => {
         dispatch(fetchDropdown());
         console.log(cryptos);
-    }, [dispatch])
+        console.log(dropdown);
+    }, [dispatch, isAddCrypto])
 
     return (
         <>
             <div className={isAddCrypto ? "dropdown__cont" : "dropdown__closed"}>
                 <img src={arrowOut} onClick={()=>setIsAddCrypto(false)}/>
-                <Dropdown />
+                <Dropdown isActive={isAddCrypto}/>
             </div>
             <div className="watchlist__container">
                 <div className="watchlist__header">
