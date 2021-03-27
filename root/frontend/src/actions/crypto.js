@@ -19,3 +19,13 @@ export const addCryptos = (crypto) => async (dispatch) => {
         console.log(error.message);
     }
 }
+
+export const deleteCryptos = (id) => async (dispatch) => {
+
+    try {
+        await api.deleteCryptos(id);
+        dispatch({type: 'DELETE', payload: id});
+    } catch (error) {
+        console.log(error.message);
+    }
+}

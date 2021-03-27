@@ -1,4 +1,5 @@
 const CryptoModel = require('../models/Crypto.js');
+let mongoose = require('mongoose');
 
 
 const getCryptos = async (req, res) => {
@@ -22,9 +23,14 @@ const addCryptos = async (req, res) => {
     }
 }
 
-const deleteCryptos = (req, res) => {
+const deleteCryptos = async  (req, res) => {
+    const { id } = req.params;
 
-    res.send("crypto deleted");
+    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No Post with that ID');
+
+    await CryptoModel.findByIdAndRemove(id);
+
+    res.json({ message : 'Post deleted successfully' });
 }
 
 module.exports = {

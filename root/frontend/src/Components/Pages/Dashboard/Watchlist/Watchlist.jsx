@@ -1,11 +1,12 @@
 import React, {useEffect, useState,} from 'react';
 import './watchlistStyles.scss';
 import addButton from '../../../../Assets/button.svg';
-import Crypto from './Crypto/Crypto';
+import Crypto from './Dropdown/Crypto/Crypto';
 import Dropdown from './Dropdown/Dropdown';
 import {useSelector, useDispatch} from 'react-redux';
 import arrowOut from '../../../../Assets/arrowOut.svg';
 import {fetchDropdown} from '../../../../actions/dropdown';
+import CryptoWidget from './CryptoWidget/CryptoWidget';
 
 const Watchlist = () => {
     const dispatch = useDispatch();
@@ -13,6 +14,21 @@ const Watchlist = () => {
     const dropdown = useSelector((state) => state.dropdownReducer);
     const [isAddCrypto, setIsAddCrypto] = useState(false);
 
+    const noCryptosAdded = (
+        <div className="no__crypto__added">
+            
+                <h2>No Cryptos Added</h2>
+            
+        </div>
+    );
+
+    const watchedCryptos = (
+        <>
+        {cryptos.map((crypto) => (
+            <CryptoWidget key={crypto._id} _id={crypto._id}  id={crypto.id} name={crypto.name} symbol={crypto.symbol} value={crypto.value}/>
+        ))}
+        </>
+    );
     
 
     useEffect(() => {
@@ -43,7 +59,7 @@ const Watchlist = () => {
                     </div>
                 </div>
                 <div className="watchlist__main">
-                    
+                    {cryptos.length > 0 ? watchedCryptos : noCryptosAdded}
                 </div>
             </div>
         </>

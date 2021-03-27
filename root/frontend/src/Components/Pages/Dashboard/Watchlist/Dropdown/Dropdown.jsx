@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux';
 import './dropdownStyles.scss';
-import Crypto from '../Crypto/Crypto';
+import Crypto from './Crypto/Crypto';
 import {useSelector} from 'react-redux';
 import {useLocation} from 'react-router-dom';
 

@@ -115,5 +115,22 @@
         border-radius: 12px;
         overflow-y: scroll;
         padding: 20px;
+        box-sizing: border-box;
+
+        .no__crypto__added {
+            position: absolute;
+            width: 66vw;
+            height: 48vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            h2 {
+                font-size: 2rem;
+                color: white;
+                font-family: 'Poppins';
+                font-weight: 100;
+            }
+        }
     }
 }

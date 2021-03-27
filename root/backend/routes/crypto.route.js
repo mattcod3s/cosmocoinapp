@@ -12,7 +12,7 @@ cryptoRoute.get('/', getCryptos);
 cryptoRoute.post('/', addCryptos);
 
 //delete crypto off database, therefore off watchlist
-cryptoRoute.delete('/delete:id', deleteCryptos);
+cryptoRoute.delete('/:id', deleteCryptos);
 
 
 module.exports = cryptoRoute;

@@ -1,10 +1,10 @@
 import React, {useEffect, useState, useContext} from 'react';
 import {useDispatch} from 'react-redux';
-import {CryptoAddDataContext} from '../../../../../context/context';
+import {CryptoAddDataContext} from '../../../../../../context/context';
 import './cryptoStyles.scss';
-import {addCryptos} from '../../../../../actions/crypto';
-import confirmation from '../../../../../Assets/confirmation.svg';
-import cancel from '../../../../../Assets/x-button.svg';
+import {addCryptos} from '../../../../../../actions/crypto';
+import confirmation from '../../../../../../Assets/confirmation.svg';
+import cancel from '../../../../../../Assets/x-button.svg';
 const ClickOutHandler = require('react-onclickout');
 
 const Crypto = ({id, symbol, name, value}) => {
@@ -44,7 +44,7 @@ const Crypto = ({id, symbol, name, value}) => {
         <ClickOutHandler onClickOut={()=>onClickout()}>
             <div className="crypto__wrapper" onClick={()=>handleCreate(name, symbol, id, roundedValue)}>
                 <div className="crypto__symbol"><h2>{symbol}</h2></div>
-                <div className="crypto__name"><h2>{name}</h2></div>
+                <div className={isToBeConfirmed ? "crypto__name__gone" : "crypto__name"}><h2>{name}</h2></div>
                 <div className={isToBeConfirmed ? "crypto__confirm_active" : "crypto__confirm"}>
                     <div className="confirm" onClick={()=>handleConfirm()}>
                         <img src={confirmation}/>

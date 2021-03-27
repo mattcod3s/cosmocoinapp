@@ -10,10 +10,10 @@ let cryptoSchema = new Schema({
         type: String, required: true
     },
     value: {
-        type: String, requuired: true
+        type: String, required: true
     }, 
     id: {
-        type: String
+        type: String, unique: true
     }
 }, {
     collection: 'cryptos' 
