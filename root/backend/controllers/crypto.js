@@ -23,6 +23,17 @@ const addCryptos = async (req, res) => {
     }
 }
 
+const updateCryptos = async  (req, res) => {
+    const { id: _id } = req.params;
+    const  crypto  = req.body;
+
+    if(!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No Post with that ID');
+
+    const updatedCrypto = await CryptoModel.findByIdAndUpdate(_id, crypto, { new: true });
+
+    res.json(updatedCrypto);
+}
+
 const deleteCryptos = async  (req, res) => {
     const { id } = req.params;
 
@@ -36,5 +47,6 @@ const deleteCryptos = async  (req, res) => {
 module.exports = {
     getCryptos,
     addCryptos,
+    updateCryptos,
     deleteCryptos,
 }
