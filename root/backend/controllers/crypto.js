@@ -29,7 +29,7 @@ const updateCryptos = async  (req, res) => {
 
     if(!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No Post with that ID');
 
-    const updatedCrypto = await CryptoModel.findByIdAndUpdate(_id, crypto);
+    const updatedCrypto = await CryptoModel.findByIdAndUpdate(_id, crypto, { new: true });
 
     res.json(updatedCrypto);
 }

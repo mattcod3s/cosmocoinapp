@@ -4,13 +4,43 @@ import deleteIcon from '../../../../../Assets/deleteOff.svg';
 import infoIcon from '../../../../../Assets/infoIcon.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import {CryptoInfoContext} from '../../../../../context/context';
-import { deleteCryptos } from '../../../../../actions/crypto';
+import { deleteCryptos, updateCryptos } from '../../../../../actions/crypto';
 
 
 const CryptoWidget = ({_id, id, name, symbol, value, isAdd}) => {
-
     const dispatch = useDispatch();
     const [cryptoInfo, setCryptoInfo] = useContext(CryptoInfoContext);
+    const cryptos = useSelector((state) => state.cryptoReducer);
+    const dropdown = useSelector((state) => state.dropdownReducer);
+    const [updatedCrypto, setUpdatedCrypto] = useState({
+        _id: '' ,id: '', name: '', nymbol: '', value: '',
+    });
+
+    useEffect(() => {
+        if (updatedCrypto.id !== '') {
+            dispatch(updateCryptos(_id, updatedCrypto));
+        }
+    }, [updatedCrypto])
+
+    const handleInfoClick = () => {
+        /*setCryptoInfo(true);*/
+        const { data } = dropdown;
+        data.map((d) => {
+            if (d.name === name) {
+                let newPrice = String(Math.round(d.quote.USD.price * 100) / 100);
+                if (newPrice !== value) {
+                    //console.log("update me")
+                    setUpdatedCrypto({
+                        _id: _id, id: id, name: name, symbol: symbol, value: newPrice, 
+                    })
+                }
+                //console.log(newPrice, value)
+            }
+        })
+        //console.log(cryptos, data);
+        //console.log(updatedCrypto);
+    }
+
     return (
         <div className="crypto__widget">
             <div className="crypto__symbol">
