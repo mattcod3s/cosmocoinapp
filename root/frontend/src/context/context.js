@@ -117,3 +117,17 @@ export const CryptoAddDataProvider = (props) => {
         </CryptoAddDataContext.Provider>
     )
 }
+
+
+export const CryptoInfoContext = createContext();
+
+export const CryptoInfoProvider = (props) => {
+
+   const [cryptoInfo, setCryptoInfo] = useState(false);
+
+    return (
+        <CryptoInfoContext.Provider value={ [cryptoInfo, setCryptoInfo] }>
+            {props.children}
+        </CryptoInfoContext.Provider>
+    )
+}

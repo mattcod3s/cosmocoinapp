@@ -5,9 +5,11 @@ import Watchlist from './Watchlist/Watchlist';
 import HeaderMain from '../../Headers/HeaderMain/HeaderMain';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchCryptos} from '../../../actions/crypto';
+import { CryptoInfoContext } from '../../../context/context'
 
 
 const Dashboard = () => {
+    const [cryptoInfo, setCryptoInfo] = useContext(CryptoInfoContext);
     const dispatch = useDispatch();
     const cryptos = useSelector((state) => state.cryptoReducer);
     useEffect(() => {
@@ -17,8 +19,7 @@ const Dashboard = () => {
     return (
         <div className="dashboard__page">
             <HeaderMain />
-            <CryptoInfo />
-            <Watchlist />
+           {cryptoInfo ?  <CryptoInfo /> : <Watchlist />}
         </div>
     )
 }

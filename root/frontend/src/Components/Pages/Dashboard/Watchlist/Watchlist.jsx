@@ -6,6 +6,7 @@ import Dropdown from './Dropdown/Dropdown';
 import {useSelector, useDispatch} from 'react-redux';
 import arrowOut from '../../../../Assets/arrowOut.svg';
 import {fetchDropdown} from '../../../../actions/dropdown';
+import {updateCryptos} from '../../../../actions/crypto';
 import CryptoWidget from './CryptoWidget/CryptoWidget';
 
 const Watchlist = () => {
@@ -25,7 +26,7 @@ const Watchlist = () => {
     const watchedCryptos = (
         <>
         {cryptos.map((crypto) => (
-            <CryptoWidget key={crypto._id} _id={crypto._id}  id={crypto.id} name={crypto.name} symbol={crypto.symbol} value={crypto.value}/>
+            <CryptoWidget isAdd={isAddCrypto} key={crypto._id} _id={crypto._id}  id={crypto.id} name={crypto.name} symbol={crypto.symbol} value={crypto.value}/>
         ))}
         </>
     );

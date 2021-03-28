@@ -20,16 +20,6 @@ export const addCryptos = (crypto) => async (dispatch) => {
     }
 }
 
-export const updateCryptos = (id) => async (dispatch) => {
-
-    try {
-        const { data } = await api.updateCryptos(id);
-        dispatch({type: 'UPDATE', payload: data});
-    } catch (error) {
-        console.log(error.message);
-    }
-}
-
 export const deleteCryptos = (id) => async (dispatch) => {
 
     try {
