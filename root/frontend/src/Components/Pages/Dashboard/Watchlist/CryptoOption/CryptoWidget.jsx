@@ -1,7 +1,8 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, useRef } from 'react';
 import './cryptoWidgetStyles.scss';
 import deleteIcon from '../../../../../Assets/deleteOff.svg';
 import infoIcon from '../../../../../Assets/infoIcon.svg';
+import refreshIcon from '../../../../../Assets/refresh.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import {CryptoInfoContext} from '../../../../../context/context';
 import { deleteCryptos, updateCryptos } from '../../../../../actions/crypto';
@@ -9,18 +10,26 @@ import { deleteCryptos, updateCryptos } from '../../../../../actions/crypto';
 
 const CryptoWidget = ({_id, id, name, symbol, value, isAdd}) => {
     const dispatch = useDispatch();
+    const [count, setCount] = useState(0);
     const [cryptoInfo, setCryptoInfo] = useContext(CryptoInfoContext);
     const cryptos = useSelector((state) => state.cryptoReducer);
     const dropdown = useSelector((state) => state.dropdownReducer);
     const [updatedCrypto, setUpdatedCrypto] = useState({
-        _id: '' ,id: '', name: '', nymbol: '', value: '',
+        _id: '' ,id: '', name: '', symbol: '', value: '',
     });
 
+    const isFirstRun = useRef(true);
     useEffect(() => {
-        if (updatedCrypto.id !== '') {
-            dispatch(updateCryptos(_id, updatedCrypto));
-        }
-    }, [updatedCrypto])
+        if (isFirstRun.current) {
+            isFirstRun.current = false;
+            return;
+          } else {
+            if (updatedCrypto.id !== '') {
+                handleInfoClick();
+                dispatch(updateCryptos(_id, updatedCrypto));
+            }
+          }
+    }, [updatedCrypto, cryptos])
 
     const handleInfoClick = () => {
         /*setCryptoInfo(true);*/
@@ -54,7 +63,7 @@ const CryptoWidget = ({_id, id, name, symbol, value, isAdd}) => {
             </div>
             <div className="crypto__delete">
                 <div className="delete__button">
-                    <img src={infoIcon} onClick={()=>setCryptoInfo(true)}/>
+                    <img src={infoIcon} onClick={()=>handleInfoClick()}/>
                     <img src={deleteIcon} onClick={()=>dispatch(deleteCryptos(_id))}/>
                 </div>
             </div>
