@@ -1,4 +1,4 @@
-import React, {useEffect, useState,} from 'react';
+import React, {useContext, useEffect, useState,} from 'react';
 import './watchlistStyles.scss';
 import addButton from '../../../../Assets/button.svg';
 import Crypto from './Dropdown/Crypto/Crypto';
@@ -35,6 +35,7 @@ const Watchlist = () => {
     useEffect(() => {
         dispatch(fetchDropdown());
         console.log(cryptos);
+        console.log(dropdown.data)
     }, [dispatch, isAddCrypto])
 
     return (

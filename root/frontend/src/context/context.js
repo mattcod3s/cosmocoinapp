@@ -131,3 +131,19 @@ export const CryptoInfoProvider = (props) => {
         </CryptoInfoContext.Provider>
     )
 }
+
+
+export const InfoContentContext = createContext();
+
+export const InfoContentProvider = (props) => {
+
+   const [infoContent, setInfoContent] = useState({
+       _id: '', id: '', name: '', value: '', symbol: ''
+   });
+
+    return (
+        <InfoContentContext.Provider value={ [infoContent, setInfoContent] }>
+            {props.children}
+        </InfoContentContext.Provider>
+    )
+}
