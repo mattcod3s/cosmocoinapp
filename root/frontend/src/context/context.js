@@ -138,7 +138,7 @@ export const InfoContentContext = createContext();
 export const InfoContentProvider = (props) => {
 
    const [infoContent, setInfoContent] = useState({
-       _id: '', id: '', name: '', value: '', symbol: ''
+       _id: '', id: '', name: '', value: '', symbol: '', percentChange1hr: '', percentChange24hr: '',percentChange7d: '', marketCap: '',
    });
 
     return (

@@ -14,19 +14,21 @@ const CryptoWidget = ({_id, id, name, symbol, value, isAdd}) => {
     const [infoContent, setInfoContent] = useContext(InfoContentContext);
     const cryptos = useSelector((state) => state.cryptoReducer);
     const dropdown = useSelector((state) => state.dropdownReducer);
+    const { data } = dropdown;
     const [updatedCrypto, setUpdatedCrypto] = useState({
         _id: '' ,id: '', name: '', nymbol: '', value: '',
     });
+    let currentPricing;
 
     useEffect(() => {
         if (updatedCrypto.id !== '') {
             dispatch(updateCryptos(_id, updatedCrypto));
         }
-    }, [updatedCrypto])
+    }, [updatedCrypto]);
+    
 
     const handleRefreshClick = () => {
         /*setCryptoInfo(true);*/
-        const { data } = dropdown;
         data.map((d) => {
             if (d.name === name) {
                 let newPrice = String(Math.round(d.quote.USD.price * 100) / 100);
@@ -44,9 +46,25 @@ const CryptoWidget = ({_id, id, name, symbol, value, isAdd}) => {
     }
 
     const handleInfoClick = () => {
-        setInfoContent({
-            _id: _id, id: id, name: name, symbol: symbol, value: value,
-        });
+
+        data.map((d) => {
+            if (d.name === name) {
+                setInfoContent({
+                    _id: _id, 
+                    id: id, 
+                    name: name, 
+                    symbol: symbol, 
+                    value: String(Math.round(d.quote.USD.price * 100) / 100),
+                    percentChange1hr: String(Math.round(d.quote.USD.percent_change_1h * 100) / 100),
+                    percentChange24hr: String(Math.round(d.quote.USD.percent_change_24h * 100) / 100),
+                    percentChange7d: String(Math.round(d.quote.USD.percent_change_7d * 100) / 100),
+                    marketCap: String(Math.round(d.quote.USD.market_cap)),
+                });
+                //console.log(newPrice, value)
+            }
+        })
+
+        
         setCryptoInfo(true);
         console.log(infoContent);
     }

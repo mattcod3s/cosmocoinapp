@@ -15,7 +15,7 @@ const Crypto = ({id, symbol, name, value}) => {
 
     const [cryptoAddData, setCryptoAddData] = useContext(CryptoAddDataContext);
 
-    const handleCreate = (coinName, coinSymbol, coinId, coinValue) => {
+    const handleCreate = (coinName, coinSymbol, coinId, coinValue, ) => {
         setCryptoAddData({
             id: coinId, name: coinName, symbol: coinSymbol, value: coinValue,
         });

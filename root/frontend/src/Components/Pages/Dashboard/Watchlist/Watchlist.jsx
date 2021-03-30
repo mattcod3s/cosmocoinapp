@@ -34,7 +34,6 @@ const Watchlist = () => {
 
     useEffect(() => {
         dispatch(fetchDropdown());
-        console.log(cryptos);
         console.log(dropdown.data)
     }, [dispatch, isAddCrypto])
 

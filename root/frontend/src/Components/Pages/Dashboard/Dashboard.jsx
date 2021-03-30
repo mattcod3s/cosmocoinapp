@@ -20,7 +20,7 @@ const Dashboard = () => {
     return (
         <div className="dashboard__page">
             <HeaderMain />
-           {cryptoInfo ?  <CryptoInfo _id={infoContent._id} id={infoContent.id} name={infoContent.name} symbol={infoContent.symbol} value={infoContent.value} /> : <Watchlist />}
+           {cryptoInfo ?  <CryptoInfo _id={infoContent._id} id={infoContent.id} name={infoContent.name} symbol={infoContent.symbol} value={infoContent.value} percentChange1hr={infoContent.percentChange1hr} percentChange24hr={infoContent.percentChange24hr} percentChange7d={infoContent.percentChange7d} marketCap={infoContent.marketCap}/>  : <Watchlist />}
         </div>
     )
 }

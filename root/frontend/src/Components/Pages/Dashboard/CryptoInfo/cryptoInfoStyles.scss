@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Train+One&display=swap');
 
 .crypto__info__box {
     margin-top: 10vh;
@@ -6,4 +7,97 @@
     background: rgb(26, 26, 26);
     border-radius: 12px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .exit {
+        width: 60vw;
+        height: 10vh;
+        h1 {
+            color: white;
+            font-family: 'Train One';
+            padding: 1vw;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+    }
+
+    .info__main {
+        width: 60vw;
+        height: 50vh;
+        display: flex;
+        flex-direction: column;
+        
+        .info__main__top{
+            width: 60vw;
+            height: 20vh;
+            display: flex;
+
+            .symbol {
+                width: 20vw;
+                height: 25vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                
+                h2 {
+                    font-family: 'Poppins';
+                    font-weight: 100;
+                    font-size: 4rem;
+                    color: white;
+                    
+                }
+            }
+            .name {
+                width: 20vw;
+                height: 25vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                
+                h2 {
+                    font-family: 'Poppins';
+                    font-weight: 200;
+                    font-size: 2rem;
+                    color: white;
+                    
+                }
+            }
+            .value {
+                width: 20vw;
+                height: 25vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                
+                h2 {
+                    font-family: 'Poppins';
+                    font-weight: 200;
+                    font-size: 1.6rem;
+                    color: rgb(141, 228, 70);
+                }
+            }
+        }
+
+        .info__main__row {
+            width: 60vw;
+            height: 30vh;
+            display: flex;
+            .marketCap {
+            }
+
+            .change1h {
+
+            }
+
+            .change27h {
+
+            }
+            .change7d {
+
+            }
+        }
+    }
 }
