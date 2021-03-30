@@ -8,16 +8,18 @@ import {CryptoInfoContext, InfoContentContext} from '../../../../../context/cont
 import { deleteCryptos, updateCryptos } from '../../../../../actions/crypto';
 
 
-const CryptoWidget = ({_id, id, name, symbol, value, isAdd}) => {
+
+const CryptoWidget = ({_id, id, name, symbol, value, percentChange1hr}) => {
     const dispatch = useDispatch();
     const [cryptoInfo, setCryptoInfo] = useContext(CryptoInfoContext);
     const [infoContent, setInfoContent] = useContext(InfoContentContext);
     const cryptos = useSelector((state) => state.cryptoReducer);
     const dropdown = useSelector((state) => state.dropdownReducer);
     const { data } = dropdown;
+    const [currentPercent, setCurrentPercent] = useState('');
     const [updatedCrypto, setUpdatedCrypto] = useState({
         _id: '' ,id: '', name: '', symbol: '', value: '',
-    });
+    });  
     const [currentPrice, setCurrentPrice] = useState('');
 
 
@@ -35,11 +37,11 @@ const CryptoWidget = ({_id, id, name, symbol, value, isAdd}) => {
         }
     }
 
-    let LatestPrice;
-    
+   
     async function fetchCurrentPrice () {
         let { currentPrice } = await cryptoCompareData();
         setCurrentPrice(currentPrice);
+        
     }
 
     useEffect(() => {
@@ -47,13 +49,13 @@ const CryptoWidget = ({_id, id, name, symbol, value, isAdd}) => {
             dispatch(updateCryptos(_id, updatedCrypto));
         }
         fetchCurrentPrice();
+        getPercent()
     }, [updatedCrypto]);
 
-   
-    
 
+    /*
     const handleRefreshClick = () => {
-        /*setCryptoInfo(true);*/
+        
         data.map((d) => {
             if (d.name === name) {
                 let newPrice = String(Math.round(d.quote.USD.price * 100) / 100);
@@ -65,9 +67,8 @@ const CryptoWidget = ({_id, id, name, symbol, value, isAdd}) => {
                 }
             }
         })
-        //console.log(cryptos, data);
-        //console.log(updatedCrypto);
-    }
+        
+    }*/
 
     const handleInfoClick = () => {
         data.map((d) => {
@@ -91,6 +92,22 @@ const CryptoWidget = ({_id, id, name, symbol, value, isAdd}) => {
         console.log(infoContent);
     }
 
+    async function getPercent() {
+        if (data === undefined) {
+            console.log('ff')
+            setTimeout(getPercent, 3000);
+        } else {
+            data.map((d) => {
+                if (d.name === name) {
+                    setCurrentPercent(String(Math.round(d.quote.USD.percent_change_1h * 100) / 100));
+                }
+                
+            })
+            clearTimeout(getPercent);
+        }
+        
+    }
+
     return (
         <div className="crypto__widget">
             <div className="crypto__symbol">
@@ -99,12 +116,15 @@ const CryptoWidget = ({_id, id, name, symbol, value, isAdd}) => {
             <div className="crypto__name">
                 <h2>{name}</h2>
             </div>
+            
             <div className="crypto__value">
-                <h2>{`$ ${currentPrice}`}</h2>
+                <h2 style={{color : 'whitesmoke'}}>{`$ ${currentPrice}`}</h2>
+            </div>
+            <div className="mini-chart">
+                <h2>{currentPercent}</h2>
             </div>
             <div className="crypto__delete">
                 <div className="delete__button">
-                    <img src={refreshIcon} onClick={()=>handleRefreshClick()}/>
                     <img src={infoIcon} onClick={()=>handleInfoClick()}/>
                     <img src={deleteIcon} onClick={()=>dispatch(deleteCryptos(_id))}/>
                 </div>

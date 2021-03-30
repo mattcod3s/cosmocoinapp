@@ -7,7 +7,7 @@ require('dotenv').config;
             uri: 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',
             qs: {
                 'start': '1',
-                'limit': '10',
+                'limit': '20',
                 'convert': 'USD'
             },
             headers: {

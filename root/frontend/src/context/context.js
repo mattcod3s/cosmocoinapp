@@ -108,7 +108,7 @@ export const CryptoAddDataContext = createContext();
 export const CryptoAddDataProvider = (props) => {
 
     const [cryptoAddData, setCryptoAddData] = useState({
-        id: '', name: '', symbol: '', value: '',
+        id: '', name: '', symbol: '', value: '', percentChange1hr: '',
     });
 
     return (

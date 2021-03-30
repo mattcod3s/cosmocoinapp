@@ -23,7 +23,7 @@ const Dropdown = ({isActive}) => {
             {displayData === undefined ? <h2>hello</h2> : 
             <>
            {displayData.map((option) => (
-               <Crypto key={option.id} id={option.id} name={option.name} symbol={option.symbol} value={option.quote.USD.price} />
+               <Crypto key={option.id} id={option.id} name={option.name} symbol={option.symbol} value={option.quote.USD.price}/>
            ))}
             </>}
         </div>

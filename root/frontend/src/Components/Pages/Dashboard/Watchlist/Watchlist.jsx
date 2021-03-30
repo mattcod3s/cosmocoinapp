@@ -26,7 +26,7 @@ const Watchlist = () => {
     let watchedCryptos = (
         <>
         {cryptos.map((crypto) => (
-            <CryptoWidget isAdd={isAddCrypto} key={crypto._id} _id={crypto._id}  id={crypto.id} name={crypto.name} symbol={crypto.symbol} value={crypto.value}/>
+            <CryptoWidget isAdd={isAddCrypto} key={crypto._id} _id={crypto._id}  id={crypto.id} name={crypto.name} symbol={crypto.symbol} value={crypto.value} />
         ))}
         </>
     );
@@ -35,6 +35,7 @@ const Watchlist = () => {
     useEffect(() => {
         dispatch(fetchDropdown());
         console.log(dropdown.data)
+        console.log(cryptos)
     }, [dispatch, isAddCrypto])
 
     return (

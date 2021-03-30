@@ -14,6 +14,9 @@ let cryptoSchema = new Schema({
     }, 
     id: {
         type: String, unique: true
+    }, 
+    percentChange1hr: {
+        type: String, required: false
     }
 }, {
     collection: 'cryptos' 
