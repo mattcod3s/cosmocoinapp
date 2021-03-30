@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, useRef } from 'react';
 import './cryptoWidgetStyles.scss';
 import deleteIcon from '../../../../../Assets/deleteOff.svg';
 import infoIcon from '../../../../../Assets/infoIcon.svg';
@@ -21,35 +21,44 @@ const CryptoWidget = ({_id, id, name, symbol, value, percentChange1hr}) => {
         _id: '' ,id: '', name: '', symbol: '', value: '',
     });  
     const [currentPrice, setCurrentPrice] = useState('');
-
+    const [isMounted, setIsMounted] = useState(false);
 
     const cryptoCompareData = async () => {
-        const response = await fetch(`https://min-api.cryptocompare.com/data/v2/histominute?fsym=${symbol}&tsym=USD&limit=119&api_key=${process.env.REACT_APP_CRYPTOCOMPARE_API_KEY}`);
-        const json = await response.json();
-        const data = json.Data.Data
-        const times = data.map(obj => obj.time)
-        const prices = data.map(obj => obj.high)
-        const currentPrice = prices[119];
-        return {
-          times,
-          prices,
-          currentPrice
+        if (isMounted) {
+            const response = await fetch(`https://min-api.cryptocompare.com/data/v2/histominute?fsym=${symbol}&tsym=USD&limit=119&api_key=${process.env.REACT_APP_CRYPTOCOMPARE_API_KEY}`);
+            const json = await response.json();
+            const data = json.Data.Data
+            const times = data.map(obj => obj.time)
+            const prices = data.map(obj => obj.high)
+            const currentPrice = prices[119];
+            return {
+            times,
+            prices,
+            currentPrice
+            }
         }
     }
 
    
     async function fetchCurrentPrice () {
-        let { currentPrice } = await cryptoCompareData();
-        setCurrentPrice(currentPrice);
+        if (isMounted) {
+            let { currentPrice } = await cryptoCompareData();
+            //setCurrentPrice(currentPrice);
+        }
         
     }
 
     useEffect(() => {
+        setIsMounted(true);
         if (updatedCrypto.id !== '') {
             dispatch(updateCryptos(_id, updatedCrypto));
         }
         fetchCurrentPrice();
-        getPercent()
+        getPercent();
+        return () => {
+            setIsMounted(false);
+            clearTimeout(getPercent);
+        }
     }, [updatedCrypto]);
 
 
@@ -92,18 +101,20 @@ const CryptoWidget = ({_id, id, name, symbol, value, percentChange1hr}) => {
         console.log(infoContent);
     }
 
-    async function getPercent() {
-        if (data === undefined) {
-            console.log('ff')
-            setTimeout(getPercent, 3000);
-        } else {
-            data.map((d) => {
-                if (d.name === name) {
-                    setCurrentPercent(String(Math.round(d.quote.USD.percent_change_1h * 100) / 100));
-                }
-                
-            })
-            clearTimeout(getPercent);
+    setTimeout(getPercent, 3000);
+    function getPercent() {
+        if (isMounted) {
+            if (data === undefined) {
+                console.log('ff')
+            } else {
+                data.map((d) => {
+                    if (d.name === name) {
+                        setCurrentPercent(String(Math.round(d.quote.USD.percent_change_1h * 100) / 100));
+                        setCurrentPrice(String(Math.round(d.quote.USD.price * 100) / 100));
+                    }
+                })
+                clearTimeout(getPercent);
+            }
         }
         
     }
@@ -118,10 +129,7 @@ const CryptoWidget = ({_id, id, name, symbol, value, percentChange1hr}) => {
             </div>
             
             <div className="crypto__value">
-                <h2 style={{color : 'whitesmoke'}}>{`$ ${currentPrice}`}</h2>
-            </div>
-            <div className="mini-chart">
-                <h2>{currentPercent}</h2>
+                <span style={currentPercent < 0 ? {color: 'rgb(255, 0, 0)', backgroundColor: 'rgba(255, 20, 20, 0.3)'} : {color: 'rgb(141, 228, 70)', backgroundColor: 'rgba(56, 116, 8, 0.3)'}}>{`%${currentPercent}`}</span><h2 style={currentPercent < 0 ? {color: 'rgb(255, 0, 0)'} : {color: 'rgb(141, 228, 70)'}}>{`$ ${currentPrice}`}</h2>
             </div>
             <div className="crypto__delete">
                 <div className="delete__button">
