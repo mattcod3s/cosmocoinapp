@@ -16,15 +16,40 @@ const CryptoWidget = ({_id, id, name, symbol, value, isAdd}) => {
     const dropdown = useSelector((state) => state.dropdownReducer);
     const { data } = dropdown;
     const [updatedCrypto, setUpdatedCrypto] = useState({
-        _id: '' ,id: '', name: '', nymbol: '', value: '',
+        _id: '' ,id: '', name: '', symbol: '', value: '',
     });
-    let currentPricing;
+    const [currentPrice, setCurrentPrice] = useState('');
+
+
+    const cryptoCompareData = async () => {
+        const response = await fetch(`https://min-api.cryptocompare.com/data/v2/histominute?fsym=${symbol}&tsym=USD&limit=119&api_key=${process.env.REACT_APP_CRYPTOCOMPARE_API_KEY}`);
+        const json = await response.json();
+        const data = json.Data.Data
+        const times = data.map(obj => obj.time)
+        const prices = data.map(obj => obj.high)
+        const currentPrice = prices[119];
+        return {
+          times,
+          prices,
+          currentPrice
+        }
+    }
+
+    let LatestPrice;
+    
+    async function fetchCurrentPrice () {
+        let { currentPrice } = await cryptoCompareData();
+        setCurrentPrice(currentPrice);
+    }
 
     useEffect(() => {
         if (updatedCrypto.id !== '') {
             dispatch(updateCryptos(_id, updatedCrypto));
         }
+        fetchCurrentPrice();
     }, [updatedCrypto]);
+
+   
     
 
     const handleRefreshClick = () => {
@@ -38,7 +63,6 @@ const CryptoWidget = ({_id, id, name, symbol, value, isAdd}) => {
                         _id: _id, id: id, name: name, symbol: symbol, value: newPrice, 
                     })
                 }
-                //console.log(newPrice, value)
             }
         })
         //console.log(cryptos, data);
@@ -46,7 +70,6 @@ const CryptoWidget = ({_id, id, name, symbol, value, isAdd}) => {
     }
 
     const handleInfoClick = () => {
-
         data.map((d) => {
             if (d.name === name) {
                 setInfoContent({
@@ -60,7 +83,6 @@ const CryptoWidget = ({_id, id, name, symbol, value, isAdd}) => {
                     percentChange7d: String(Math.round(d.quote.USD.percent_change_7d * 100) / 100),
                     marketCap: String(Math.round(d.quote.USD.market_cap)),
                 });
-                //console.log(newPrice, value)
             }
         })
 
@@ -78,7 +100,7 @@ const CryptoWidget = ({_id, id, name, symbol, value, isAdd}) => {
                 <h2>{name}</h2>
             </div>
             <div className="crypto__value">
-                <h2>{`$ ${value}`}</h2>
+                <h2>{`$ ${currentPrice}`}</h2>
             </div>
             <div className="crypto__delete">
                 <div className="delete__button">

@@ -3,8 +3,8 @@
 .crypto__info__box {
     margin-top: 10vh;
     width: 60vw;
-    height: 60vh;
-    background: rgb(26, 26, 26);
+    height: 80vh;
+    background: rgb(10, 10, 10);
     border-radius: 12px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     display: flex;
@@ -26,7 +26,7 @@
 
     .info__main {
         width: 60vw;
-        height: 50vh;
+        height: 70vh;
         display: flex;
         flex-direction: column;
         
@@ -34,9 +34,10 @@
             width: 60vw;
             height: 20vh;
             display: flex;
+           
 
             .symbol {
-                width: 20vw;
+                width: 30vw;
                 height: 25vh;
                 display: flex;
                 justify-content: center;
@@ -45,13 +46,14 @@
                 h2 {
                     font-family: 'Poppins';
                     font-weight: 100;
-                    font-size: 4rem;
+                    font-size: 5rem;
                     color: white;
                     
                 }
             }
-            .name {
-                width: 20vw;
+            
+            .value {
+                width: 30vw;
                 height: 25vh;
                 display: flex;
                 justify-content: center;
@@ -61,42 +63,93 @@
                     font-family: 'Poppins';
                     font-weight: 200;
                     font-size: 2rem;
-                    color: white;
-                    
-                }
-            }
-            .value {
-                width: 20vw;
-                height: 25vh;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                
-                h2 {
-                    font-family: 'Poppins';
-                    font-weight: 200;
-                    font-size: 1.6rem;
                     color: rgb(141, 228, 70);
+                    margin-right: 5vw;
+                }
+
+                .percent1hr {
+                    padding: 10px 10px 20px 10px;
+                    h4 {
+                        font-family: 'Poppins';
+                        font-weight: 200;
+                        font-size: 0.9rem;
+                        padding: 3px;
+                        border-radius: 3px;
+                        
+                    }
                 }
             }
         }
 
-        .info__main__row {
+        .info__mid__row {
             width: 60vw;
-            height: 30vh;
+            height: 15vh;
             display: flex;
-            .marketCap {
+            justify-content: center;
+            align-items: center;
+            
+            .topNameArea {
+                width: 35vw;
+                height: 15vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .name {
+                    color: whitesmoke;
+                    font-family: 'Poppins';
+                    span {
+                        font-size: 0.8rem;
+                        font-style: italic;
+                        margin-left: -5vw;
+                        font-weight: 200;
+                        border-bottom: 1px solid white;
+                    }
+
+                    h2 {
+                        padding: 10px;
+                        font-size: 1.2rem;
+                        font-weight: 300;
+                    }
+                }
             }
 
-            .change1h {
+            .bottomDataArea {
+                width: 22vw;
+                height: 15vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
 
+                .marketCap {
+                    color: whitesmoke;
+                    font-family: 'Poppins';
+                    span {
+                        font-size: 0.8rem;
+                        font-style: italic;
+                        margin-left: -5vw;
+                        font-weight: 200;
+                        border-bottom: 1px solid white;
+                    }
+
+                    h2 {
+                        padding: 10px;
+                        font-size: 1.2rem;
+                        font-weight: 300;
+                    }
+                }
             }
+        }
 
-            .change27h {
-
-            }
-            .change7d {
-
+        .info__chart__area {
+            width: 60vw;
+            height: 35vh;
+            display: flex;
+            overflow: hidden;
+            
+            canvas {
+                width: 60vw !important;
+                height: 30vh !important;
             }
         }
     }
