@@ -2,10 +2,14 @@ import axios from 'axios';
 
 const url = "http://localhost:4000/dashboard";
 const dropdownUrl = "http://localhost:4000/dashboard/dropdown";
+const loginUrl = "http://localhost:4000/login"
 
 export const fetchCryptos = () => axios.get(url);
 export const addCryptos = (newCrypto) => axios.post(url, newCrypto);
 export const updateCryptos = (id, updatedCrypto) => axios.patch(`${url}/${id}`, updatedCrypto);
 export const deleteCryptos = (id) => axios.delete(`${url}/${id}`);
 
-export const fetchDropdown = () => axios.get(dropdownUrl);
+export const signIn = (loginFormData) => axios.post(`${loginUrl}/signin`, loginFormData);
+export const signUp = (registrationFormData) => axios.post(`${loginUrl}/signup`, registrationFormData);
+
+export const fetchDropdown = () => axios.get(dropdownUrl); 

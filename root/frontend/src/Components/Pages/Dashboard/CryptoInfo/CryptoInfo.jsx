@@ -108,13 +108,14 @@ const CryptoInfo = ({_id, id, name, symbol, value, percentChange1hr, percentChan
              },
               //this removes legend color
               displayColors: false,
-              yPadding: 2,
-              xPadding: 2,
+              yPadding: 20,
+              xPadding: 10,
               position: 'nearest',
               caretSize: 10,
               backgroundColor: 'rgba(255,255,255,.9)',
-              bodyFontSize: 15,
-              bodyFontColor: '#303030' 
+              bodyFontSize: 20,
+              bodyFontColor: '#303030',
+              bodyFontFamily: 'Poppins',
             }
           }
         });

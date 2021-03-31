@@ -1,33 +1,35 @@
-import React, {useContext, useEffect, useState, useReducer, useDispatch} from 'react';
+import React, {useContext, useEffect, useState, useReducer,} from 'react';
 import './signinFormStyles.scss';
-import {FadeAnimContext,UserContext, CurrentUserContext, LoginFormDataContext} from '../../../../../context/context';
+import {FadeAnimContext, CurrentUserContext, LoginFormDataContext, UserContext} from '../../../../../context/context';
 import {useHistory, useLocation} from 'react-router-dom';
 import google from '../../../../../Assets/google.svg';
 import {GoogleLogin } from 'react-google-login';
-import dotenv from  'dotenv'
+import { useDispatch, useSelector} from 'react-redux';
+import dotenv from  'dotenv';
 import { signin } from '../../../../../actions/auth';
+
+
+
 
 const SigninForm = () => {
     const history = useHistory();
     const location = useLocation();
-    const {authorise, logout} = useContext(UserContext);
+    const dispatch = useDispatch();
     const [fadeAnim, setFadeAnim] = useContext(FadeAnimContext);
     const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
     const [loginFormData, setLoginFormData] = useContext(LoginFormDataContext);
 
     useEffect(() => {
-        const token = currentUser?.token;
-        setCurrentUser(JSON.parse(localStorage.getItem('profile')));
-        console.log(currentUser)
-    }, [location, currentUser])
+        
+    }, [location, currentUser]) 
 
     const handleSubmit = () => {
         console.log(loginFormData);
+        dispatch(signin(loginFormData, history));
     }
 
     const handleChange = (e) => {
-        setLoginFormData({ ...loginFormData, [e.target.name] : e.target.value});
-        signin(loginFormData, history);
+        setLoginFormData({...loginFormData, [e.target.name] : e.target.value })
     }
 
     const googleSuccess = async (res) => {
@@ -35,7 +37,7 @@ const SigninForm = () => {
         const result = res?.profileObj;
         const token = res?.tokenId;
         try {
-            authorise(result, token);
+            dispatch({type: 'AUTH', data: { result, token }})
             history.push('/dashboard');
         } catch (error) {
             console.log(error);

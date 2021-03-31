@@ -10,10 +10,10 @@ const auth = async (req, res, next) => {
         if (token && isCustomAuth) {
             decodedData = jwt.verify(token, `${process.env.TOKEN_SECRET}`);
 
-            req.userId = decodedData?.id;
+            req.userId = decodedData.id;
         } else {
             decodedData = jwt.decode(token);
-            req.userId = decodedData?.sub;
+            req.userId = decodedData.sub;
         }
 
         next();
@@ -21,3 +21,5 @@ const auth = async (req, res, next) => {
         console.log(error);
     }
 } 
+
+module.exports = {auth};

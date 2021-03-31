@@ -4,6 +4,8 @@ const cryptoRoute = express.Router();
 
 const { getCryptos, addCryptos, updateCryptos, deleteCryptos } = require('../controllers/crypto.js');
 
+const auth = require('../middleware/auth');
+
 
 //fetch cryptos from database into watchlist
 cryptoRoute.get('/', getCryptos);

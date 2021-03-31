@@ -1,5 +1,4 @@
 import React, { useState, createContext, useReducer } from 'react';
-import {contextReducer} from './contextReducer';
 
 const initialLoginFormData = {emailAddress: '', password: ''};
 const initialRegistrationFormData = {firstName: '', lastName: '', emailAddress: '', password: ''};
@@ -34,29 +33,6 @@ export const FadeAnimProvider = (props) => {
 }
 
 
-export const UserContext = createContext(contextReducer);
-
-
-export const UserProvider = (props) => {
-    const [user, dispatch] = useReducer(contextReducer);
-
-    const authorise = (result, token) => {
-        dispatch({ type : 'AUTH', payload : result, token});
-    }
-
-    const logout = (result) => {
-        dispatch({ type : 'LOGOUT', payload : result });
-    }
-
-    return (
-        <UserContext.Provider value={{ 
-            authorise, 
-            logout
-        }}>
-            {props.children}
-        </UserContext.Provider>
-    )
-}
 
 export const CurrentUserContext = createContext();
 

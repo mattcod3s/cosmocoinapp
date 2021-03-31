@@ -1,20 +1,20 @@
 import React, {useContext,} from 'react';
 import {useHistory, useLocation} from 'react-router-dom';
-import {UserContext, CurrentUserContext} from '../../../context/context';
+import { CurrentUserContext } from '../../../context/context';
 import './headerMainStyles.scss';
 import userIcon from '../../../Assets/userIcon.svg';
+import {useDispatch} from 'react-redux';
 
 const HeaderMain = () => {
+    const dispatch = useDispatch();
     const history = useHistory();
     const location = useLocation();
-    const {authorise, logout,} = useContext(UserContext);
     const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
 
     const logoutHandler = () => {
-        logout();
+        dispatch({type: 'LOGOUT'});
         history.push('/');
         setCurrentUser(null);
-        
     }
 
     return (
@@ -28,7 +28,9 @@ const HeaderMain = () => {
                         <img src={userIcon}/>
                     </div>
                     <div className="profile__name">
-                        <h3>{JSON.parse(localStorage.getItem('profile')).name}</h3>
+                    <h3>{JSON.parse(localStorage.getItem('profile'))?.name || JSON.parse(localStorage.getItem('profile'))?.firstName}</h3>
+                        <h3>{/*JSON.parse(localStorage.getItem('profile')).result.name === undefined ? JSON.parse(localStorage.getItem('profile')).result.firstName : JSON.parse(localStorage.getItem('profile')).result.name*/ }</h3>
+
                     </div>
                 </div>
                 <div className="logout__buttonArea">

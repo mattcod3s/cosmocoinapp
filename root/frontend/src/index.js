@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import {SignupStatusProvider,CryptoInfoProvider,InfoContentProvider, CryptoAddDataProvider, FadeAnimProvider, UserProvider, CurrentUserProvider, RegistrationFormDataProvider, LoginFormDataProvider} from './context/context';
+import {SignupStatusProvider,CryptoInfoProvider,InfoContentProvider, CryptoAddDataProvider, FadeAnimProvider,  CurrentUserProvider, RegistrationFormDataProvider, LoginFormDataProvider} from './context/context';
 import {createStore, applyMiddleware, compose} from 'redux';
 import reducers from './reducers';
 import thunk from 'redux-thunk';
@@ -12,7 +12,7 @@ const store = createStore(reducers, compose(applyMiddleware(thunk)));
 ReactDOM.render(
     <Provider store={store}>
         <CurrentUserProvider>
-            <UserProvider>
+            
                 <RegistrationFormDataProvider>
                     <LoginFormDataProvider>
                         <SignupStatusProvider>
@@ -28,7 +28,7 @@ ReactDOM.render(
                         </SignupStatusProvider>
                     </LoginFormDataProvider>
                 </RegistrationFormDataProvider>
-            </UserProvider>    
+           
         </CurrentUserProvider>
     </Provider>
 , document.getElementById('root'));

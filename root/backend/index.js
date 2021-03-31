@@ -22,7 +22,7 @@ mongoose.connect(database.db, {
 const userEndPoint = require('./routes/user.route.js');
 const cryptoEndPoint = require('./routes/crypto.route.js');
 const dropdownEndPoint = require('./routes/dropdown.route.js');
-
+ 
 const app = express();
 
 app.use(bodyParser.json());
@@ -32,7 +32,7 @@ app.use(bodyParser.urlencoded({
 
 app.use(cors());
 app.use('/dashboard', cryptoEndPoint);
-app.use('/', userEndPoint);
+app.use('/login', userEndPoint);
 app.use('/dashboard/dropdown', dropdownEndPoint);
 
 const port = process.env.PORT || 4000;

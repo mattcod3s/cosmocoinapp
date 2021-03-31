@@ -10,14 +10,11 @@ let userSchema = new Schema({
         type: String, required: true
     },
     emailAddress: {
-        type: String, requuired: true
+        type: String, required: true
     }, 
     password: {
         type: String, required: true
     }, 
-    id: {
-        type: String
-    }
 }, {
     collection: 'users' 
 })

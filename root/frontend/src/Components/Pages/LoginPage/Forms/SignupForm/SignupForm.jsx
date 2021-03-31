@@ -1,22 +1,25 @@
 import React, {useContext, useEffect, useState} from 'react';
 import './signupFormStyles.scss';
-import {FadeAnimContext, RegistrationFormDataContext} from '../../../../../context/context';
-import { signin, signup } from '../../../../../actions/auth';
+import {FadeAnimContext, RegistrationFormDataContext, CurrentUserContext} from '../../../../../context/context';
+import { signup } from '../../../../../actions/auth';
+import { useDispatch, useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 
 const SignupForm = () => {
     const history = useHistory();
+    const dispatch = useDispatch();
     const [fadeAnim, setFadeAnim] = useContext(FadeAnimContext);
     const [registrationFormData, setRegistrationFormData] = useContext(RegistrationFormDataContext);
 
 
     const handleSubmit = () => {
         console.log(registrationFormData);
+        dispatch(signup(registrationFormData, history));
     }
 
     const handleChange = (e) => {
         setRegistrationFormData({ ...registrationFormData, [e.target.name] : e.target.value})
-        signup(registrationFormData, history);
+        
     }
 
     return (
@@ -26,7 +29,7 @@ const SignupForm = () => {
                     <h2>Sign Up</h2>
                 </div>
                 <div className="su_form">
-                    <form onSubmit={()=>handleSubmit()}>
+                    <form>
                         <div className="form__row__top">
                             <div className="fname__input">
                                 <input onChange={(e)=>handleChange(e)} type="text" placeholder="First Name" name="firstName"/>
