@@ -70,6 +70,16 @@
                     justify-content: space-around;
                     align-items: center;
 
+                    .error__msg {
+                        position: absolute;
+                        color: red;
+                        font-family: 'Poppins';
+                        font-size: 0.8rem;
+                        text-align: center;
+                        font-weight: 100;
+                        padding: 10px 0 0 60px;
+                    }
+
                     input {
                         width: 15vw;
                         padding: 16px;
@@ -97,6 +107,16 @@
                         border: 1px solid white;
                         color: white;
                     }
+                    .error__msg {
+                        position: absolute;
+                        color: red;
+                        font-family: 'Poppins';
+                        font-size: 0.8rem;
+                        text-align: center;
+                        font-weight: 100;
+                        padding: 10px 0 0 60px;
+                    }
+
 
                     img {
                         position: absolute;

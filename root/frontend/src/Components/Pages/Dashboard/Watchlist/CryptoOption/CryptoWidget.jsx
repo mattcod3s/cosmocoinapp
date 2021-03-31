@@ -129,7 +129,7 @@ const CryptoWidget = ({_id, id, name, symbol, value, percentChange1hr}) => {
             </div>
             
             <div className="crypto__value">
-                <span style={currentPercent < 0 ? {color: 'rgb(255, 0, 0)', backgroundColor: 'rgba(255, 20, 20, 0.3)'} : {color: 'rgb(141, 228, 70)', backgroundColor: 'rgba(56, 116, 8, 0.3)'}}>{`%${currentPercent}`}</span><h2 style={currentPercent < 0 ? {color: 'rgb(255, 0, 0)'} : {color: 'rgb(141, 228, 70)'}}>{`$ ${currentPrice}`}</h2>
+                <span style={currentPercent < 0 ? {color: 'rgb(255, 0, 0)', backgroundColor: 'rgba(255, 20, 20, 0.3)', border: '1px solid rgb(255, 0, 0)'} : {color: 'rgb(141, 228, 70)', backgroundColor: 'rgba(56, 116, 8, 0.3)', border: '1px solid rgb(141, 228, 70)'}}>{`%${currentPercent}`}</span><h2 style={currentPercent < 0 ? {color: 'rgb(255, 0, 0)'} : {color: 'rgb(141, 228, 70)'}}>{`$ ${currentPrice}`}</h2>
             </div>
             <div className="crypto__delete">
                 <div className="delete__button">

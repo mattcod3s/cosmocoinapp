@@ -24,8 +24,6 @@ const Watchlist = () => {
         </div>
     );
 
-
-
     let watchedCryptos = (
         <>
         {cryptos.map((crypto) => (
@@ -39,9 +37,6 @@ const Watchlist = () => {
 
     useEffect(() => {
         dispatch(fetchDropdown());
-        console.log(dropdown.data)
-        console.log(cryptos)
-        
     }, [dispatch, isAddCrypto])
 
     return (

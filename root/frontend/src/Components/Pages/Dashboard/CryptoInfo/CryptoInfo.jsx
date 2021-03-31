@@ -47,7 +47,7 @@ const CryptoInfo = ({_id, id, name, symbol, value, percentChange1hr, percentChan
         let gradient = coinChart.createLinearGradient(0, 0, 0, 400);
       
         gradient.addColorStop(0, `${isNegative ? 'rgba(255,0,0,0.5)' : 'rgba(141, 228, 70,0.5)'}`);
-        gradient.addColorStop(.425, `${isNegative ? 'rgba(255,0,0,0)' : 'rgba(141, 228, 70,0)'}`);
+        gradient.addColorStop(.6, `${isNegative ? 'rgba(255,0,0,0)' : 'rgba(141, 228, 70,0)'}`);
       
         Chart.defaults.global.defaultFontFamily = 'Red Hat Text';
         Chart.defaults.global.defaultFontSize = 12;
