@@ -17,6 +17,9 @@ let cryptoSchema = new Schema({
     }, 
     percentChange1hr: {
         type: String, required: false
+    },
+    author: {
+        type: String, required: false
     }
 }, {
     collection: 'cryptos' 

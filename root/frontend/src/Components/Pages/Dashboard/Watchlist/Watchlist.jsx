@@ -13,6 +13,7 @@ const Watchlist = () => {
     const dispatch = useDispatch();
     const cryptos = useSelector((state) => state.cryptoReducer);
     const dropdown = useSelector((state) => state.dropdownReducer);
+    
     const [isAddCrypto, setIsAddCrypto] = useState(false);
 
     const noCryptosAdded = (
@@ -23,10 +24,14 @@ const Watchlist = () => {
         </div>
     );
 
+
+
     let watchedCryptos = (
         <>
         {cryptos.map((crypto) => (
-            <CryptoWidget isAdd={isAddCrypto} key={crypto._id} _id={crypto._id}  id={crypto.id} name={crypto.name} symbol={crypto.symbol} value={crypto.value} />
+            
+                <CryptoWidget isAdd={isAddCrypto} key={crypto._id} _id={crypto._id}  id={crypto.id} name={crypto.name} symbol={crypto.symbol} value={crypto.value} />
+            
         ))}
         </>
     );
@@ -36,6 +41,7 @@ const Watchlist = () => {
         dispatch(fetchDropdown());
         console.log(dropdown.data)
         console.log(cryptos)
+        
     }, [dispatch, isAddCrypto])
 
     return (

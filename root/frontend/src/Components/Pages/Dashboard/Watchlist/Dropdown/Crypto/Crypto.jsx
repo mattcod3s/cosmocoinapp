@@ -17,7 +17,7 @@ const Crypto = ({id, symbol, name, value}) => {
 
     const handleCreate = (coinName, coinSymbol, coinId, coinValue, ) => {
         setCryptoAddData({
-            id: coinId, name: coinName, symbol: coinSymbol, value: coinValue,
+            id: coinId, name: coinName, symbol: coinSymbol, value: coinValue, author: JSON.parse(localStorage.getItem('profile'))?.email || JSON.parse(localStorage.getItem('profile'))?.emailAddress,
         });
         if (isToBeConfirmed===false) {
             setIsToBeConfirmed(true);
