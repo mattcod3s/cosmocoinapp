@@ -7,6 +7,8 @@ import {GoogleLogin } from 'react-google-login';
 import { useDispatch, useSelector} from 'react-redux';
 import dotenv from  'dotenv';
 import { signin } from '../../../../../actions/auth';
+import visible from '../../../../../Assets/visible.svg';
+import invisible from '../../../../../Assets/invisible.svg';
 
 
 
@@ -18,6 +20,7 @@ const SigninForm = () => {
     const [fadeAnim, setFadeAnim] = useContext(FadeAnimContext);
     const [currentUser, setCurrentUser] = useContext(CurrentUserContext);
     const [loginFormData, setLoginFormData] = useContext(LoginFormDataContext);
+    const [isVisibile, setIsVisible] = useState(false);
 
     useEffect(() => {
         
@@ -57,7 +60,10 @@ const SigninForm = () => {
                 <div className="si_form">
                     <form onSubmit={()=>handleSubmit()}>
                         <input type="text" name="emailAddress" placeholder="Email Address" onChange={(e)=>handleChange(e)}/>
-                        <input type="password" name="password" placeholder="Password" onChange={(e)=>handleChange(e)}/>
+                        <>
+                        <input type={isVisibile ? "text" : "password"} name="password" placeholder="Password" onChange={(e)=>handleChange(e)}/>
+                        <img src={isVisibile ? visible : invisible} onClick={()=>setIsVisible(!isVisibile)}/>
+                        </>
                     </form>
                 </div>
                 <div className="si__buttonArea">

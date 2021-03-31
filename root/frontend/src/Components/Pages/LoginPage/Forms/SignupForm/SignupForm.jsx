@@ -4,12 +4,17 @@ import {FadeAnimContext, RegistrationFormDataContext, CurrentUserContext} from '
 import { signup } from '../../../../../actions/auth';
 import { useDispatch, useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
+import visible from '../../../../../Assets/visible.svg';
+import invisible from '../../../../../Assets/invisible.svg';
+
+
 
 const SignupForm = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const [fadeAnim, setFadeAnim] = useContext(FadeAnimContext);
     const [registrationFormData, setRegistrationFormData] = useContext(RegistrationFormDataContext);
+    const [isVisible, setIsVisible] = useState(false);
 
 
     const handleSubmit = () => {
@@ -48,8 +53,8 @@ const SignupForm = () => {
                         </div>
                         <div className="form__row">
                             <div className="password__input">
-                                <input onChange={(e)=>handleChange(e)} type="password" placeholder="Password" name="password"/>
-                                
+                                <input onChange={(e)=>handleChange(e)} type={isVisible ? "text" : "password"}placeholder="Password" name="password"/>
+                                <img src={isVisible ? visible : invisible} onClick={()=>setIsVisible(!isVisible)}/>
                             </div>
                         </div>
                     </form>
