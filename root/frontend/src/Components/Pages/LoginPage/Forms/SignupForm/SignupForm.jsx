@@ -72,10 +72,7 @@ const SignupForm = () => {
     }
 
     const handleSubmit = () => {
-        checkFirstName();
-        checkLastName();
-        checkEmail();
-        checkPassword();
+        
         if (setEmailEmpty || setEmailError || setFirstNameEmpty || setFirstNameError || setLastNameEmpty || setLastNameError || setPasswordEmpty || setPasswordError) {
             console.log('error')
         }

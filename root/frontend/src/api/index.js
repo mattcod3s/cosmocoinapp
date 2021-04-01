@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const url = "http://localhost:4000/dashboard";
-const dropdownUrl = "http://localhost:4000/dashboard/dropdown";
-const loginUrl = "http://localhost:4000/login"
+const url = "https://git.heroku.com/cosmocoin.git/dashboard";
+const dropdownUrl = "https://git.heroku.com/cosmocoin.git/dashboard/dropdown";
+const loginUrl = "https://git.heroku.com/cosmocoin.git/login"
 
 export const fetchCryptos = () => axios.get(url);
 export const addCryptos = (newCrypto) => axios.post(url, newCrypto);

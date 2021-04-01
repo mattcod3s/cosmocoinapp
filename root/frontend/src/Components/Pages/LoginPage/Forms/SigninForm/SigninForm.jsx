@@ -70,7 +70,7 @@ const SigninForm = () => {
                     <div className="sign_in__button si_btn" onClick={()=>handleSubmit()}><h3>Sign In</h3></div>
                     {/*<div className="sign_in__google__button si_btn"><h3>Sign In with Google</h3><img src={google}/></div>*/}
                     <GoogleLogin 
-                        clientId={`${process.env.REACT_APP_CLIENT_ID}`}
+                        clientId={`686487444601-t2hv5b5kfpj0v69nh32l6fptof19p3iu.apps.googleusercontent.com`}
                         render={(renderProps) => (
                             <div 
                                 className="sign_in__google__button si_btn" 
